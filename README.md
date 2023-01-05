@@ -5,4 +5,4 @@ run 'npm run seed'
 
 run 'npm run start' OR 'npm run start-dev'
 
-test via Postman
+test through console.log()
