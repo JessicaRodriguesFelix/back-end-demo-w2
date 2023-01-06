@@ -15,7 +15,24 @@ const run = async () => {
     console.log("Let's start hashing some passwords!");
 
     /* *************** START DEMO *************** */
-    
+    const hashedPassword = await bcrypt.hash(userJohn.password, SALT_COUNT)
+    const hashedPassword2 = await bcrypt.hash(userJohn2.password, SALT_COUNT)
+    console.log(hashedPassword)
+    console.log(hashedPassword2)
+
+    const isAMatch = await bcrypt.compare(userJohn.password, hashedPassword)
+    if (isAMatch) {
+      console.log('passwords match!')
+    } else {
+      console.log('incorrect')
+    }
+   
+    const hashedPasswordForUser = await bcrypt.hash(userJohn.password, SALT_COUNT)
+    const safeUser = await User.create({
+      username: userJohn.username,
+      password: hashedPasswordForUser
+    })
+
     
   } catch (error) {
     console.error(error)
